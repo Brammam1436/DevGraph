@@ -25,11 +25,12 @@ load_dotenv(BASE_DIR / ".env")
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
+    ".onrender.com",
 ]
 
 if os.getenv("RENDER_EXTERNAL_HOSTNAME"):
@@ -143,4 +144,5 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "https://dev-graph-lyart.vercel.app",
 ]
